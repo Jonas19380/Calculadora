@@ -3,10 +3,12 @@ const CACHE_NAME = "calculadora-v1";
 const FILES_TO_CACHE = [
   "./",
   "./index.html",
-  "./Calculadora.css",
-  "./Calculadora.js",
+  "./css/Calculadora.css",
+  "./js/Calculadora.js",
   "./manifest.json",
-  "./click.mp3"
+  "./audio/click.mp3",
+  "./icons/icon-192.png",
+  "./icons/icon-512.png"
 ];
 
 // Instala o service worker
