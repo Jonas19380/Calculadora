@@ -79,7 +79,7 @@ botoes.forEach(botao => {
         conta = resultado.toString();
         atualizarTela();
       } catch {
-        conta = "Erro";
+        conta = "Error";
         atualizarTela();
       }
       return;
