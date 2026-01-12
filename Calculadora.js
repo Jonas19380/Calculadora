@@ -1,13 +1,39 @@
 const texto = document.getElementById("textoDaCalculadora");
 const botoes = document.querySelectorAll("[data-valor]");
 const botaoC = document.getElementById("C");
-
 const som = document.getElementById("clickSom")
+const backspace = document.getElementById("backspace");
+const btnMute = document.getElementById("mute")
+let mute = false;
+const btnModo = document.getElementById("modoEscuro");
+
+backspace.addEventListener("click", () => {
+  tocarSom();
+  conta = conta.trimEnd();
+
+  conta = conta.slice(0, -1);
+
+  ultimoFoiOperador = /[+\-x÷]\s?$/.test(conta);
+
+  texto.classList.remove("pulse");
+  requestAnimationFrame(() => {
+  texto.classList.add("pulse");
+  });
+
+  atualizarTela();
+});
 
 function tocarSom() {
+  if (mute) return;
   som.currentTime = 0;
   som.play()
 };
+
+btnMute.addEventListener("click", () => {
+  tocarSom()
+  mute = !mute;
+  btnMute.textContent = mute ? "🔇" : "🔊";
+});
 
 let conta = "";
 let ultimoFoiOperador = false;
@@ -15,11 +41,7 @@ let ultimoFoiOperador = false;
 // função para atualizar o texto
 function atualizarTela() {
   texto.innerText = conta || "Faça uma conta.";
-
-  texto.classList.remove("pulse");
-  requestAnimationFrame(() => {
-  texto.classList.add("pulse");
-  });
+  texto.style.fontStyle = conta ? "normal" : "italic"
 }
 
 botoes.forEach(botao => {
@@ -29,6 +51,19 @@ botoes.forEach(botao => {
 
     // ignora vírgula
     if (valor === ",") return;
+
+    // porcentagem
+    if (valor === "%") {
+      if (conta === "") return;
+
+        // pega o último número da expressão
+        conta = conta.replace(/(\d+\.?\d*)$/, (match) => {
+        return (Number(match) / 100).toString();
+  });
+
+  atualizarTela();
+  return;
+}
 
     // botão =
     if (valor === "=") {
@@ -70,12 +105,21 @@ botoes.forEach(botao => {
 botaoC.addEventListener("click", () => {
   tocarSom()
   conta = "";
+  
+  texto.classList.remove("pulse");
+  requestAnimationFrame(() => {
+  texto.classList.add("pulse");
+  });
+  
   atualizarTela();
   
 });
 
-const btnModo = document.getElementById("modoEscuro");
-
 btnModo.addEventListener("click", () => {
+  tocarSom()
   document.body.classList.toggle("dark");
 });
+
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("sw.js");
+}
