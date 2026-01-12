@@ -4,17 +4,24 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=Edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#121212">
   
   <title>Calculadora</title>
   
+  <link rel="manifest" href="manifest.json">
   <link rel="stylesheet" href="Calculadora.css">
 </head>
 
 <body>
+  <div class="top-buttons">
   <button id="modoEscuro" class="escuro">🌙</button>
+  <button id="mute" class="icone">🔊</button>
+  </div>
   <div class="calculadora">
   <p id="textoDaCalculadora"><em>Faça uma conta.</em></p>
   <button id="C" class="c">C</button>
+  <button id="backspace" class="operador">⌫</button>
+  <button class="operador" data-valor="%">%</button>
     <button class="operador" data-valor="÷">÷</button>
   <button data-valor="7">7</button>
   <button data-valor="8">8</button>
@@ -37,5 +44,12 @@
 </div>
 <audio id="clickSom" src="click.mp3"></audio>
   <script src="Calculadora.js"></script>
+  <script>
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("sw.js")
+      .then(() => console.log("Service Worker registrado"))
+      .catch(err => console.log("Erro no SW", err));
+  }
+</script>
 </body>
 </html>
