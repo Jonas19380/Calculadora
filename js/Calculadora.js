@@ -77,10 +77,11 @@ if (emErro) {
   // se apertar número ou ponto, começa nova conta
   if (!isNaN(valor) || valor === ".") {
     emErro = false;
+    texto.classList.remove("erro"); // 👈 IMPORTANTE
     conta = valor;
     atualizarTela();
   }
-  return; // ignora operadores, %, = etc.
+  return;
 }
     
     // porcentagem
@@ -133,18 +134,18 @@ if (emErro) {
   });
 });
 
-// botão C
 botaoC.addEventListener("click", () => {
-  tocarSom()
+  tocarSom();
   conta = "";
-  
+  emErro = false;
+  texto.classList.remove("erro");
+
   texto.classList.remove("pulse");
   requestAnimationFrame(() => {
-  texto.classList.add("pulse");
+    texto.classList.add("pulse");
   });
-  
+
   atualizarTela();
-  
 });
 
 btnModo.addEventListener("click", () => {
