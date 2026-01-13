@@ -4,8 +4,26 @@ const botaoC = document.getElementById("C");
 const som = document.getElementById("clickSom")
 const backspace = document.getElementById("backspace");
 const btnMute = document.getElementById("mute")
-let mute = false;
 const btnModo = document.getElementById("modoEscuro");
+let conta = "";
+let ultimoFoiOperador = false;
+let emErro = false;
+let mute = false;
+
+function mostrarErro() {
+  texto.innerText = "Erro";
+  texto.style.fontStyle = "normal";
+
+  emErro = true;
+  conta = "";
+
+  texto.classList.remove("pulse");
+  texto.classList.remove("erro");
+
+  requestAnimationFrame(() => {
+    texto.classList.add("erro");
+  });
+}
 
 backspace.addEventListener("click", () => {
   tocarSom();
@@ -48,10 +66,17 @@ botoes.forEach(botao => {
   botao.addEventListener("click", () => {
     tocarSom()
     let valor = botao.dataset.valor;
-
-    // ignora vírgula
-    if (valor === ",") return;
-
+// se estiver em erro
+if (emErro) {
+  // se apertar número ou ponto, começa nova conta
+  if (!isNaN(valor) || valor === ".") {
+    emErro = false;
+    conta = valor;
+    atualizarTela();
+  }
+  return; // ignora operadores, %, = etc.
+}
+    
     // porcentagem
     if (valor === "%") {
       if (conta === "") return;
@@ -79,7 +104,8 @@ botoes.forEach(botao => {
         conta = resultado.toString();
         atualizarTela();
       } catch {
-        conta = "Erro";
+        mostrarErro()
+        conta = ""
         atualizarTela();
       }
       return;
