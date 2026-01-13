@@ -5,8 +5,6 @@ const som = document.getElementById("clickSom")
 const backspace = document.getElementById("backspace");
 const btnMute = document.getElementById("mute")
 const btnModo = document.getElementById("modoEscuro");
-let conta = "";
-let ultimoFoiOperador = false;
 let emErro = false;
 let mute = false;
 
@@ -27,6 +25,14 @@ function mostrarErro() {
 
 backspace.addEventListener("click", () => {
   tocarSom();
+
+if (emErro) {
+    emErro = false;
+    conta = "";
+    atualizarTela();
+    return;
+}
+  
   conta = conta.trimEnd();
 
   conta = conta.slice(0, -1);
