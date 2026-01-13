@@ -8,6 +8,13 @@ const btnModo = document.getElementById("modoEscuro");
 let emErro = false;
 let mute = false;
 
+// função para atualizar o texto
+function atualizarTela() {
+  if (emErro) return;
+  texto.innerText = conta || "Faça uma conta.";
+  texto.style.fontStyle = conta ? "normal" : "italic"
+}
+
 function mostrarErro() {
   texto.innerText = "Erro";
   texto.style.fontStyle = "normal";
@@ -62,12 +69,6 @@ btnMute.addEventListener("click", () => {
 let conta = "";
 let ultimoFoiOperador = false;
 
-// função para atualizar o texto
-function atualizarTela() {
-  texto.innerText = conta || "Faça uma conta.";
-  texto.style.fontStyle = conta ? "normal" : "italic"
-}
-
 botoes.forEach(botao => {
   botao.addEventListener("click", () => {
     tocarSom()
@@ -112,8 +113,6 @@ if (emErro) {
         atualizarTela();
       } catch {
         mostrarErro()
-        conta = ""
-        atualizarTela();
       }
       return;
     }
