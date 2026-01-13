@@ -140,3 +140,14 @@ body.dark #textoDaCalculadora {
 .pulse {
   animation: pulse 0.15s ease;
 }
+
+@keyframes erroPop {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(0.95); }
+  100% { transform: scale(1); }
+}
+
+.erro {
+  color: #ff4d4d !important;
+  animation: erroPop 0.15s ease;
+}
