@@ -36,6 +36,7 @@ backspace.addEventListener("click", () => {
 if (emErro) {
   emErro = false;
   conta = "";
+  atualizarTela()
   texto.classList.remove("erro");
   return;
 }
