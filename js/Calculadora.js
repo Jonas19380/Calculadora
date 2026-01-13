@@ -37,6 +37,8 @@ if (emErro) {
     emErro = false;
     texto.classList.remove("erro");
     text.innerText = "Faça uma conta.";
+    text.style.color = "#eee";
+    text.style.fontStyle = "italic";
     return;
 }
   
