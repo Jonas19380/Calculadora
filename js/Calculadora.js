@@ -34,11 +34,14 @@ backspace.addEventListener("click", () => {
   tocarSom();
 
 if (emErro) {
-  emErro = false;
-  conta = "";
-  atualizarTela()
-  texto.classList.remove("erro");
-  return;
+    emErro = false;
+    conta = "";
+
+    texto.classList.remove("erro");
+    texto.style.fontStyle = "italic";
+    texto.innerText = "Faça uma conta.";
+
+    return;
 }
   
   conta = conta.trimEnd();
