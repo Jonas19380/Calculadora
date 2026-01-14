@@ -5,6 +5,9 @@ const som = document.getElementById("clickSom")
 const backspace = document.getElementById("backspace");
 const btnMute = document.getElementById("mute")
 const btnModo = document.getElementById("modoEscuro");
+const menuBtn = document.getElementById("menuBtn");
+const menu = document.getElementById("menuLateral");
+const overlay = document.getElementById("overlay");
 let emErro = false;
 let mute = false;
 
@@ -29,6 +32,23 @@ function mostrarErro() {
     texto.classList.add("erro");
   });
 }
+
+function tocarSom() {
+  if (mute) return;
+  som.currentTime = 0;
+  som.play()
+};
+
+menuBtn.addEventListener("click", () => {
+  tocarSom();
+  menu.classList.toggle("aberto");
+  overlay.classList.toggle("ativo");
+});
+
+overlay.addEventListener("click", () => {
+  menu.classList.remove("aberto");
+  overlay.classList.remove("ativo");
+});
 
 backspace.addEventListener("click", () => {
   tocarSom();
@@ -57,12 +77,6 @@ if (emErro) {
 
   atualizarTela();
 });
-
-function tocarSom() {
-  if (mute) return;
-  som.currentTime = 0;
-  som.play()
-};
 
 btnMute.addEventListener("click", () => {
   tocarSom()
