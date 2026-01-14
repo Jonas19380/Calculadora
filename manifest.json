@@ -1,6 +1,6 @@
 {
-  "name": "Calculadora",
-  "short_name": "Calc",
+  "name": "Calculadorasite",
+  "short_name": "Calculas",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#121212",
