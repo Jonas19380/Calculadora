@@ -35,9 +35,18 @@ function mostrarErro() {
 
 function tocarSom() {
   if (mute) return;
-  som.currentTime = 0;
-  som.play()
-};
+
+  if (som.readyState >= 2) {
+    som.currentTime = 0;
+    som.play();
+  } else {
+    som.load();
+    som.oncanplaythrough = () => {
+      som.currentTime = 0;
+      som.play();
+    };
+  }
+}
 
 menuBtn.addEventListener("click", () => {
   tocarSom();
