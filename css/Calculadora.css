@@ -151,3 +151,79 @@ body.dark #textoDaCalculadora {
   color: #ff4d4d !important;
   animation: erroPop 0.15s ease;
 }
+
+.menu-btn {
+  position: absolute;
+  top: 10px;
+  right: -46px;
+
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  font-size: 20px;
+  padding: 0;
+  cursor: pointer;
+
+  z-index: 1100;
+}
+
+/* ===== MENU LATERAL ===== */
+.menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 160px;
+  height: 100vh;
+  background: #1e1e1e;
+
+  transform: translateX(-160px);
+  transition: transform 0.25s ease;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  padding-top: 60px;
+  z-index: 1000;
+}
+
+.menu.aberto {
+  transform: translateX(0);
+}
+
+.menu-item {
+  height: 32px !important;
+  font-size: 15px;
+  padding: 0 10px;
+  border-radius: 7px;
+
+  width: calc(100% - 16px);
+  margin: 4px 8px;
+
+  background: #2a2a2a;
+  color: white;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+}
+
+.menu-item:active {
+  transform: scale(0.97);
+}
+
+.menu-item:hover {
+  background: #3a3a3a;
+}
+
+#overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  display: none;
+  z-index: 999;
+}
+
+#overlay.ativo {
+  display: block;
+} 
