@@ -1,4 +1,4 @@
-const CACHE_NAME = "calculadora-v5.3.3";
+const CACHE_NAME = "calculadora-v5.3.4";
 
 const FILES_TO_CACHE = [
   "./",
